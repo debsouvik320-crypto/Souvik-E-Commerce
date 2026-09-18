@@ -1,0 +1,2365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Souvik E-Commerce — Premium Fashion Store</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:#080808;
+    color:#fff;
+    line-height:1.5;
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+
+:root{
+    --bg:#080808;
+    --card:#111;
+    --card2:#161616;
+    --text:#fff;
+    --muted:#999;
+    --line:#292929;
+    --gold:#d6b36a;
+    --green:#54d88a;
+    --danger:#ff5d6c;
+}
+
+.topbar{
+    background:#fff;
+    color:#000;
+    text-align:center;
+    padding:9px;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.navbar{
+    height:76px;
+    padding:0 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+    background:rgba(8,8,8,.94);
+    backdrop-filter:blur(20px);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:23px;
+    font-weight:950;
+    letter-spacing:-1px;
+}
+.logo span{color:var(--gold)}
+
+.navlinks{
+    display:flex;
+    gap:28px;
+    align-items:center;
+}
+.navlinks a{
+    font-size:13px;
+    color:#ccc;
+    transition:.2s;
+}
+.navlinks a:hover{color:#fff}
+
+.navactions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.iconbtn{
+    width:42px;
+    height:42px;
+    border:1px solid var(--line);
+    background:#111;
+    color:#fff;
+    border-radius:50%;
+    position:relative;
+}
+.badge{
+    position:absolute;
+    right:-3px;
+    top:-3px;
+    background:var(--danger);
+    color:#fff;
+    width:17px;
+    height:17px;
+    border-radius:50%;
+    font-size:10px;
+    display:grid;
+    place-items:center;
+}
+
+.hero{
+    min-height:680px;
+    display:flex;
+    align-items:center;
+    padding:80px 7%;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 75% 30%,#343434 0,transparent 30%),
+        linear-gradient(115deg,#080808,#101010);
+}
+.hero:after{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    right:-180px;
+    bottom:-220px;
+    border-radius:50%;
+    border:1px solid #333;
+}
+.hero-content{
+    max-width:720px;
+    position:relative;
+    z-index:2;
+}
+.eyebrow{
+    color:var(--gold);
+    letter-spacing:4px;
+    font-size:12px;
+    font-weight:900;
+    margin-bottom:20px;
+}
+.hero h1{
+    font-size:clamp(48px,8vw,105px);
+    line-height:.92;
+    letter-spacing:-5px;
+    margin-bottom:28px;
+}
+.hero h1 span{
+    color:transparent;
+    -webkit-text-stroke:1px #fff;
+}
+.hero p{
+    color:#aaa;
+    max-width:570px;
+    font-size:17px;
+    margin-bottom:35px;
+}
+.hero-buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:0;
+    padding:14px 23px;
+    border-radius:8px;
+    font-weight:800;
+    transition:.25s;
+}
+.btn-primary{
+    background:#fff;
+    color:#000;
+}
+.btn-primary:hover{transform:translateY(-2px);background:var(--gold)}
+.btn-dark{
+    background:#151515;
+    color:#fff;
+    border:1px solid #333;
+}
+.btn-dark:hover{border-color:#fff}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+}
+.stat{
+    padding:27px 20px;
+    text-align:center;
+    border-right:1px solid var(--line);
+}
+.stat:last-child{border:0}
+.stat strong{font-size:26px}
+.stat small{display:block;color:#777;margin-top:3px}
+
+.section{
+    padding:85px 6%;
+}
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    align-items:end;
+    margin-bottom:35px;
+}
+.section-head h2{
+    font-size:40px;
+    letter-spacing:-2px;
+}
+.section-head p{color:#777}
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:12px;
+}
+.category{
+    min-height:150px;
+    background:linear-gradient(145deg,#191919,#0d0d0d);
+    border:1px solid var(--line);
+    border-radius:15px;
+    display:flex;
+    flex-direction:column;
+    justify-content:end;
+    padding:20px;
+    transition:.3s;
+    position:relative;
+    overflow:hidden;
+}
+.category:before{
+    content:"";
+    position:absolute;
+    width:90px;
+    height:90px;
+    background:#252525;
+    border-radius:50%;
+    right:-25px;
+    top:-25px;
+}
+.category:hover{
+    transform:translateY(-5px);
+    border-color:#777;
+}
+.category .emoji{
+    font-size:31px;
+    margin-bottom:25px;
+    position:relative;
+}
+.category strong{font-size:15px}
+.category span{font-size:11px;color:#777}
+
+.controls{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+.searchbox{
+    flex:1;
+    min-width:230px;
+    display:flex;
+    align-items:center;
+    border:1px solid var(--line);
+    background:#111;
+    border-radius:9px;
+    padding:0 15px;
+}
+.searchbox input{
+    width:100%;
+    background:transparent;
+    border:0;
+    outline:0;
+    color:#fff;
+    padding:13px 10px;
+}
+.filter{
+    background:#111;
+    color:#fff;
+    border:1px solid var(--line);
+    border-radius:9px;
+    padding:12px 14px;
+    outline:0;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.product{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:15px;
+    overflow:hidden;
+    transition:.3s;
+}
+.product:hover{
+    transform:translateY(-5px);
+    border-color:#555;
+}
+.product-image{
+    height:310px;
+    background:#171717;
+    position:relative;
+    overflow:hidden;
+}
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+.product:hover img{transform:scale(1.06)}
+.product-tag{
+    position:absolute;
+    left:12px;
+    top:12px;
+    background:#fff;
+    color:#000;
+    padding:5px 9px;
+    border-radius:5px;
+    font-size:10px;
+    font-weight:900;
+}
+.heart{
+    position:absolute;
+    right:12px;
+    top:12px;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    border:1px solid #555;
+    background:#090909aa;
+    color:#fff;
+}
+.product-info{padding:17px}
+.product-info small{color:#777}
+.product-info h3{
+    font-size:16px;
+    margin:4px 0 9px;
+}
+.rating{color:var(--gold);font-size:12px}
+.price{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    margin:10px 0;
+}
+.price strong{font-size:19px}
+.old{
+    color:#666;
+    text-decoration:line-through;
+    font-size:12px;
+}
+.product-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+}
+.product-actions button{
+    padding:10px 7px;
+    border-radius:7px;
+    border:1px solid #333;
+    background:#171717;
+    color:#fff;
+    font-size:12px;
+    font-weight:800;
+}
+.product-actions button:first-child{
+    background:#fff;
+    color:#000;
+}
+
+.deal{
+    margin:0 6% 80px;
+    padding:55px;
+    border:1px solid #343434;
+    border-radius:20px;
+    background:
+      radial-gradient(circle at 80% 30%,#292929,transparent 35%),
+      #101010;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
+}
+.deal h2{
+    font-size:48px;
+    letter-spacing:-2px;
+}
+.deal p{color:#888;margin-top:10px}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+.feature{
+    border:1px solid var(--line);
+    background:#101010;
+    padding:28px;
+    border-radius:15px;
+}
+.feature-icon{font-size:25px;margin-bottom:20px}
+.feature h3{font-size:16px;margin-bottom:8px}
+.feature p{font-size:12px;color:#777}
+
+.footer{
+    border-top:1px solid var(--line);
+    padding:60px 6% 30px;
+    background:#050505;
+}
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:40px;
+}
+.footer h3{margin-bottom:15px}
+.footer p,.footer a{
+    color:#777;
+    font-size:13px;
+    display:block;
+    margin:8px 0;
+}
+.copyright{
+    border-top:1px solid var(--line);
+    margin-top:40px;
+    padding-top:20px;
+    color:#555;
+    font-size:12px;
+}
+
+/* MODALS */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:#000b;
+    backdrop-filter:blur(8px);
+    z-index:3000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+.overlay.active{display:flex}
+
+.modal{
+    width:min(950px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:#111;
+    border:1px solid #333;
+    border-radius:18px;
+    padding:25px;
+    position:relative;
+}
+.close{
+    position:absolute;
+    right:18px;
+    top:18px;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:1px solid #444;
+    background:#181818;
+    color:#fff;
+    z-index:5;
+}
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+.quick-image{
+    height:500px;
+    border-radius:12px;
+    overflow:hidden;
+    background:#181818;
+}
+.quick-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.quick-info{padding:30px 10px}
+.quick-info h2{font-size:38px;line-height:1;margin:10px 0}
+.quick-info p{color:#888;margin:20px 0}
+.option-title{
+    font-size:12px;
+    color:#777;
+    margin:20px 0 8px;
+}
+.option-row{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+.option{
+    background:#181818;
+    color:#fff;
+    border:1px solid #333;
+    padding:10px 15px;
+    border-radius:7px;
+}
+.option.selected{
+    background:#fff;
+    color:#000;
+}
+.full-btn{
+    width:100%;
+    margin-top:20px;
+}
+
+.cart-list{
+    margin:25px 0;
+}
+.cart-item{
+    display:grid;
+    grid-template-columns:75px 1fr auto;
+    gap:15px;
+    padding:15px 0;
+    border-bottom:1px solid #292929;
+    align-items:center;
+}
+.cart-item img{
+    width:75px;
+    height:80px;
+    object-fit:cover;
+    border-radius:8px;
+}
+.cart-item h4{font-size:14px}
+.cart-item small{color:#777}
+.qty{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:8px;
+}
+.qty button{
+    width:27px;
+    height:27px;
+    border-radius:5px;
+    border:1px solid #444;
+    background:#181818;
+    color:#fff;
+}
+.cart-total{
+    display:flex;
+    justify-content:space-between;
+    border-top:1px solid #444;
+    padding-top:20px;
+    margin-top:20px;
+    font-size:20px;
+}
+
+.checkout-grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:25px;
+}
+.form-group{margin-bottom:14px}
+.form-group label{
+    display:block;
+    font-size:12px;
+    color:#777;
+    margin-bottom:6px;
+}
+.form-group input,.form-group textarea,.form-group select{
+    width:100%;
+    background:#181818;
+    border:1px solid #333;
+    color:#fff;
+    padding:13px;
+    border-radius:8px;
+    outline:0;
+}
+.form-group textarea{min-height:90px;resize:vertical}
+.payment{
+    display:grid;
+    gap:8px;
+}
+.payment label{
+    display:flex;
+    gap:10px;
+    padding:15px;
+    background:#181818;
+    border:1px solid #333;
+    border-radius:8px;
+    cursor:pointer;
+}
+.payment input{accent-color:#fff}
+
+.order-card{
+    background:#181818;
+    border:1px solid #333;
+    border-radius:10px;
+    padding:18px;
+    margin:10px 0;
+}
+.order-status{
+    display:inline-block;
+    margin-top:8px;
+    padding:5px 9px;
+    border-radius:5px;
+    background:#183c29;
+    color:#6ff0a0;
+    font-size:11px;
+}
+
+.track-search{
+    display:flex;
+    gap:10px;
+}
+.track-search input{
+    flex:1;
+    background:#181818;
+    border:1px solid #333;
+    border-radius:8px;
+    padding:14px;
+    color:#fff;
+    outline:0;
+}
+
+.timeline{
+    margin-top:30px;
+    border-left:2px solid #444;
+    padding-left:25px;
+}
+.timeline-item{
+    position:relative;
+    padding-bottom:28px;
+}
+.timeline-item:before{
+    content:"";
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#777;
+    position:absolute;
+    left:-32px;
+    top:5px;
+}
+.timeline-item.done:before{background:var(--green)}
+.timeline-item h4{font-size:14px}
+.timeline-item p{color:#777;font-size:12px}
+
+.empty{
+    padding:60px 20px;
+    text-align:center;
+    color:#666;
+    border:1px dashed #333;
+    border-radius:12px;
+}
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#fff;
+    color:#000;
+    padding:14px 18px;
+    border-radius:8px;
+    z-index:5000;
+    font-size:13px;
+    font-weight:800;
+    transform:translateY(100px);
+    opacity:0;
+    transition:.3s;
+}
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+.mobile-nav{
+    display:none;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+    .products{grid-template-columns:repeat(3,1fr)}
+    .categories{grid-template-columns:repeat(3,1fr)}
+    .features{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:800px){
+    .navbar{height:65px;padding:0 4%}
+    .navlinks{display:none}
+    .hero{min-height:600px;padding:70px 5%}
+    .hero h1{letter-spacing:-3px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .stat:nth-child(2){border-right:0}
+    .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    .products{grid-template-columns:repeat(2,1fr);gap:10px}
+    .product-image{height:240px}
+    .section{padding:60px 4%}
+    .section-head h2{font-size:32px}
+    .categories{grid-template-columns:repeat(2,1fr)}
+    .deal{
+        margin:0 4% 60px;
+        padding:35px 25px;
+        display:block;
+    }
+    .deal h2{font-size:36px}
+    .deal .btn{margin-top:20px}
+    .footer-grid{grid-template-columns:1fr 1fr}
+    .quick-grid,.checkout-grid{grid-template-columns:1fr}
+    .quick-image{height:350px}
+    .mobile-nav{
+        display:flex;
+        position:fixed;
+        bottom:0;
+        left:0;
+        right:0;
+        z-index:2000;
+        background:#0d0d0df5;
+        border-top:1px solid #333;
+        backdrop-filter:blur(20px);
+        justify-content:space-around;
+        padding:9px 4px;
+    }
+    .mobile-nav button{
+        background:none;
+        color:#999;
+        border:0;
+        font-size:10px;
+    }
+    .mobile-nav button b{
+        display:block;
+        font-size:19px;
+        margin-bottom:2px;
+    }
+    body{padding-bottom:65px}
+}
+
+@media(max-width:500px){
+    .products{grid-template-columns:1fr 1fr}
+    .product-image{height:205px}
+    .product-info{padding:12px}
+    .product-info h3{font-size:13px}
+    .price strong{font-size:16px}
+    .product-actions{grid-template-columns:1fr}
+    .features{grid-template-columns:1fr}
+    .footer-grid{grid-template-columns:1fr}
+    .track-search{display:block}
+    .track-search button{width:100%;margin-top:8px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    FREE SHIPPING ON ORDERS ABOVE ₹999 • EASY 7-DAY RETURNS • PREMIUM COLLECTION
+</div>
+
+<header class="navbar">
+    <div class="logo">SOUVIK<span>.</span></div>
+
+    <nav class="navlinks">
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#categories">Categories</a>
+        <a href="#deals">Deals</a>
+        <a href="#features">Why Us</a>
+    </nav>
+
+    <div class="navactions">
+        <button class="iconbtn" onclick="openWishlist()">♡<span class="badge" id="wishBadge">0</span></button>
+        <button class="iconbtn" onclick="openCart()">🛒<span class="badge" id="cartBadge">0</span></button>
+    </div>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="eyebrow">SOUVIK E-COMMERCE • NEW SEASON</div>
+
+        <h1>STYLE<br><span>WITHOUT</span><br>LIMITS.</h1>
+
+        <p>
+            Discover premium fashion, footwear, accessories and lifestyle essentials.
+            Everything you need, in one modern shopping experience.
+        </p>
+
+        <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="scrollToShop()">Explore Collection →</button>
+            <button class="btn btn-dark" onclick="openTracking()">Track My Order</button>
+        </div>
+    </div>
+</section>
+
+<section class="stats">
+    <div class="stat"><strong>10K+</strong><small>Happy Customers</small></div>
+    <div class="stat"><strong>500+</strong><small>Products</small></div>
+    <div class="stat"><strong>4.9/5</strong><small>Customer Rating</small></div>
+    <div class="stat"><strong>24/7</strong><small>Support</small></div>
+</section>
+
+<section class="section" id="categories">
+    <div class="section-head">
+        <div>
+            <div class="eyebrow">SHOP BY CATEGORY</div>
+            <h2>Find Your Style</h2>
+        </div>
+        <p>Tap any category to explore</p>
+    </div>
+
+    <div class="categories">
+        <button class="category" onclick="filterCategory('Fashion')">
+            <span class="emoji">👕</span>
+            <strong>Fashion</strong>
+            <span>Clothing & Streetwear</span>
+        </button>
+
+        <button class="category" onclick="filterCategory('Shoes')">
+            <span class="emoji">👟</span>
+            <strong>Shoes</strong>
+            <span>Sneakers & Footwear</span>
+        </button>
+
+        <button class="category" onclick="filterCategory('Accessories')">
+            <span class="emoji">⌚</span>
+            <strong>Accessories</strong>
+            <span>Complete Your Look</span>
+        </button>
+
+        <button class="category" onclick="filterCategory('Electronics')">
+            <span class="emoji">🎧</span>
+            <strong>Electronics</strong>
+            <span>Smart Lifestyle</span>
+        </button>
+
+        <button class="category" onclick="filterCategory('Beauty')">
+            <span class="emoji">✨</span>
+            <strong>Beauty</strong>
+            <span>Personal Care</span>
+        </button>
+
+        <button class="category" onclick="filterCategory('Home')">
+            <span class="emoji">🏠</span>
+            <strong>Home</strong>
+            <span>Modern Living</span>
+        </button>
+    </div>
+</section>
+
+<section class="section" id="shop">
+    <div class="section-head">
+        <div>
+            <div class="eyebrow">OUR COLLECTION</div>
+            <h2>Shop Everything</h2>
+        </div>
+        <p id="resultCount">12 products</p>
+    </div>
+
+    <div class="controls">
+        <div class="searchbox">
+            🔍
+            <input id="searchInput" oninput="renderProducts()" placeholder="Search products, fashion, shoes...">
+        </div>
+
+        <select class="filter" id="categoryFilter" onchange="renderProducts()">
+            <option value="All">All Categories</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Shoes">Shoes</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Beauty">Beauty</option>
+            <option value="Home">Home</option>
+        </select>
+
+        <select class="filter" id="sortFilter" onchange="renderProducts()">
+            <option value="featured">Featured</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+            <option value="rating">Top Rated</option>
+            <option value="discount">Biggest Discount</option>
+        </select>
+    </div>
+
+    <div class="products" id="productGrid"></div>
+</section>
+
+<section class="deal" id="deals">
+    <div>
+        <div class="eyebrow">LIMITED TIME OFFER</div>
+        <h2>UP TO 40% OFF</h2>
+        <p>Fresh drops. Better prices. Limited stock.</p>
+    </div>
+    <button class="btn btn-primary" onclick="showDeals()">Shop Deals →</button>
+</section>
+
+<section class="section" id="features">
+    <div class="section-head">
+        <div>
+            <div class="eyebrow">THE SOUVIK PROMISE</div>
+            <h2>Shopping Made Easy</h2>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="feature">
+            <div class="feature-icon">🚚</div>
+            <h3>Fast Delivery</h3>
+            <p>Quick and reliable delivery directly to your doorstep.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🔒</div>
+            <h3>Secure Checkout</h3>
+            <p>Multiple payment options with a secure checkout experience.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">↩️</div>
+            <h3>Easy Returns</h3>
+            <p>Simple return process for eligible products.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">💬</div>
+            <h3>24/7 Support</h3>
+            <p>Our support experience is always ready to help.</p>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-grid">
+        <div>
+            <div class="logo">SOUVIK<span>.</span></div>
+            <p>Premium fashion and lifestyle shopping, built for the modern generation.</p>
+        </div>
+
+        <div>
+            <h3>Shop</h3>
+            <a href="#shop">All Products</a>
+            <a href="#" onclick="filterCategory('Fashion')">Fashion</a>
+            <a href="#" onclick="filterCategory('Shoes')">Shoes</a>
+            <a href="#" onclick="filterCategory('Accessories')">Accessories</a>
+        </div>
+
+        <div>
+            <h3>Help</h3>
+            <a href="#" onclick="openTracking()">Track Order</a>
+            <a href="#" onclick="openOrders()">My Orders</a>
+            <a href="#" onclick="openCart()">Cart</a>
+            <a href="#" onclick="openWishlist()">Wishlist</a>
+        </div>
+
+        <div>
+            <h3>Company</h3>
+            <a href="#features">About Us</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+
+    <div class="copyright">
+        © 2026 Souvik E-Commerce. All rights reserved.
+    </div>
+</footer>
+
+<div class="mobile-nav">
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <b>⌂</b>Home
+    </button>
+
+    <button onclick="scrollToShop()">
+        <b>⌕</b>Shop
+    </button>
+
+    <button onclick="openWishlist()">
+        <b>♡</b>Wishlist
+    </button>
+
+    <button onclick="openCart()">
+        <b>🛒</b>Cart
+    </button>
+
+    <button onclick="openOrders()">
+        <b>▣</b>Orders
+    </button>
+</div>
+
+<!-- QUICK VIEW -->
+
+<div class="overlay" id="quickOverlay">
+    <div class="modal">
+        <button class="close" onclick="closeModal('quickOverlay')">×</button>
+
+        <div class="quick-grid">
+            <div class="quick-image">
+                <img id="quickImg">
+            </div>
+
+            <div class="quick-info">
+                <small id="quickCategory"></small>
+                <h2 id="quickTitle"></h2>
+                <div class="rating" id="quickRating"></div>
+
+                <div class="price">
+                    <strong id="quickPrice"></strong>
+                    <span class="old" id="quickOld"></span>
+                </div>
+
+                <p id="quickDescription"></p>
+
+                <div class="option-title">SELECT SIZE</div>
+                <div class="option-row" id="sizeOptions">
+                    <button class="option selected" onclick="selectOption(this)">S</button>
+                    <button class="option" onclick="selectOption(this)">M</button>
+                    <button class="option" onclick="selectOption(this)">L</button>
+                    <button class="option" onclick="selectOption(this)">XL</button>
+                </div>
+
+                <div class="option-title">SELECT COLOR</div>
+                <div class="option-row">
+                    <button class="option selected" onclick="selectOption(this)">Black</button>
+                    <button class="option" onclick="selectOption(this)">White</button>
+                    <button class="option" onclick="selectOption(this)">Grey</button>
+                </div>
+
+                <button class="btn btn-primary full-btn" id="quickAdd">
+                    Add To Cart
+                </button>
+
+                <button class="btn btn-dark full-btn" id="quickBuy">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CART -->
+
+<div class="overlay" id="cartOverlay">
+    <div class="modal">
+        <button class="close" onclick="closeModal('cartOverlay')">×</button>
+
+        <div class="eyebrow">YOUR BAG</div>
+        <h2>Shopping Cart</h2>
+
+        <div class="cart-list" id="cartList"></div>
+
+        <div id="couponArea"></div>
+
+        <div class="cart-total">
+            <span>Total</span>
+            <strong id="cartTotal">₹0</strong>
+        </div>
+
+        <button class="btn btn-primary full-btn" onclick="openCheckout()">
+            Proceed To Checkout →
+        </button>
+    </div>
+</div>
+
+<!-- WISHLIST -->
+
+<div class="overlay" id="wishlistOverlay">
+    <div class="modal">
+        <button class="close" onclick="closeModal('wishlistOverlay')">×</button>
+
+        <div class="eyebrow">SAVED ITEMS</div>
+        <h2>My Wishlist</h2>
+
+        <div class="products" id="wishlistGrid"></div>
+    </div>
+</div>
+
+<!-- CHECKOUT -->
+
+<div class="overlay" id="checkoutOverlay">
+    <div class="modal">
+        <button class="close" onclick="closeModal('checkoutOverlay')">×</button>
+
+        <div class="eyebrow">CHECKOUT</div>
+        <h2>Complete Your Order</h2>
+
+        <div class="checkout-grid">
+            <div>
+                <h3 style="margin:20px 0">Delivery Details</h3>
+
+                <div class="form-group">
+                    <label>FULL NAME</label>
+                    <input id="customerName" placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label>MOBILE NUMBER</label>
+                    <input id="customerPhone" placeholder="Enter mobile number">
+                </div>
+
+                <div class="form-group">
+                    <label>EMAIL</label>
+                    <input id="customerEmail" type="email" placeholder="Enter email">
+                </div>
+
+                <div class="form-group">
+                    <label>DELIVERY ADDRESS</label>
+                    <textarea id="customerAddress" placeholder="House / Street / Area / City / State"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>PINCODE</label>
+                    <input id="customerPin" placeholder="Enter pincode">
+                </div>
+
+                <h3 style="margin:25px 0 12px">Payment Method</h3>
+
+                <div class="payment">
+                    <label>
+                        <input type="radio" name="payment" value="UPI" checked>
+                        <span>📱 UPI</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="payment" value="Card">
+                        <span>💳 Credit / Debit Card</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="payment" value="Net Banking">
+                        <span>🏦 Net Banking</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="payment" value="Wallet">
+                        <span>👛 Wallet</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="payment" value="COD">
+                        <span>🚚 Cash On Delivery</span>
+                    </label>
+                </div>
+            </div>
+
+            <div>
+                <h3 style="margin:20px 0">Order Summary</h3>
+
+                <div id="checkoutSummary"></div>
+
+                <div class="cart-total">
+                    <span>Total</span>
+                    <strong id="checkoutTotal">₹0</strong>
+                </div>
+
+                <button class="btn btn-primary full-btn" onclick="placeOrder()">
+                    Place Order
+                </button>
+
+                <p style="font-size:10px;color:#555;margin-top:12px">
+                    Demo checkout: connect a real payment gateway/backend before accepting real payments.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ORDER TRACKING -->
+
+<div class="overlay" id="trackingOverlay">
+    <div class="modal">
+        <button class="close" onclick="closeModal('trackingOverlay')">×</button>
+
+        <div class="eyebrow">ORDER TRACKING</div>
+        <h2>Track My Order</h2>
+
+        <p style="color:#777;margin:10px 0 20px">
+            Enter your order ID to see the latest delivery status.
+        </p>
+
+        <div class="track-search">
+            <input id="trackingInput" placeholder="Example: SOU2026XXXX">
+            <button class="btn btn-primary" onclick="trackOrder()">Track Order</button>
+        </div>
+
+        <div id="trackingResult"></div>
+    </div>
+</div>
+
+<!-- ORDERS -->
+
+<div class="overlay" id="ordersOverlay">
+    <div class="modal">
+        <button class="close" onclick="closeModal('ordersOverlay')">×</button>
+
+        <div class="eyebrow">ACCOUNT</div>
+        <h2>My Orders</h2>
+
+        <div id="ordersList"></div>
+    </div>
+</div>
+
+<!-- ORDER SUCCESS -->
+
+<div class="overlay" id="successOverlay">
+    <div class="modal" style="text-align:center;padding:60px 30px">
+        <div style="font-size:70px">✓</div>
+
+        <div class="eyebrow">ORDER CONFIRMED</div>
+
+        <h2 style="font-size:40px">Thank You!</h2>
+
+        <p style="color:#888;margin:15px 0">
+            Your order has been successfully placed.
+        </p>
+
+        <div class="order-card">
+            <div>ORDER ID</div>
+            <strong id="successOrderId" style="font-size:22px"></strong>
+            <span class="order-status">Order Confirmed</span>
+        </div>
+
+        <button class="btn btn-primary" onclick="closeModal('successOverlay');openOrders()">
+            View My Orders
+        </button>
+
+        <button class="btn btn-dark" onclick="closeModal('successOverlay')">
+            Continue Shopping
+        </button>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* ============================================================
+   SOUVIK E-COMMERCE APPLICATION
+   Frontend demo with localStorage
+   ============================================================ */
+
+const products = [
+
+{
+ id:1,
+ title:"Aero Oversized Tee",
+ category:"Fashion",
+ price:899,
+ old:1299,
+ rating:4.8,
+ tag:"BESTSELLER",
+ image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",
+ description:"Premium oversized cotton tee designed for everyday streetwear."
+},
+
+{
+ id:2,
+ title:"Noir Runner X",
+ category:"Shoes",
+ price:2999,
+ old:4299,
+ rating:4.9,
+ tag:"HOT",
+ image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85",
+ description:"Modern everyday sneakers with a lightweight and comfortable design."
+},
+
+{
+ id:3,
+ title:"Aural Pro Headphones",
+ category:"Electronics",
+ price:4999,
+ old:6499,
+ rating:4.9,
+ tag:"PREMIUM",
+ image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85",
+ description:"Premium wireless headphones for music, work and travel."
+},
+
+{
+ id:4,
+ title:"Mono Steel Watch",
+ category:"Accessories",
+ price:2199,
+ old:2999,
+ rating:4.7,
+ tag:"NEW",
+ image:"https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=85",
+ description:"Minimal steel watch with a clean premium dial."
+},
+
+{
+ id:5,
+ title:"Studio Denim Jacket",
+ category:"Fashion",
+ price:2499,
+ old:3499,
+ rating:4.8,
+ tag:"TRENDING",
+ image:"https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=900&q=85",
+ description:"Classic denim jacket with a modern relaxed silhouette."
+},
+
+{
+ id:6,
+ title:"Orbit Smart Speaker",
+ category:"Electronics",
+ price:3299,
+ old:4499,
+ rating:4.6,
+ tag:"SMART",
+ image:"https://images.unsplash.com/photo-1589003077984-894e133dabab?auto=format&fit=crop&w=900&q=85",
+ description:"Compact smart speaker designed for your modern home."
+},
+
+{
+ id:7,
+ title:"Transit Pack 24L",
+ category:"Accessories",
+ price:1899,
+ old:2499,
+ rating:4.8,
+ tag:"POPULAR",
+ image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85",
+ description:"A practical premium backpack for college, work and travel."
+},
+
+{
+ id:8,
+ title:"Halo Table Light",
+ category:"Home",
+ price:1399,
+ old:1999,
+ rating:4.5,
+ tag:"HOME",
+ image:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=85",
+ description:"Elegant ambient table light for a modern workspace."
+},
+
+{
+ id:9,
+ title:"Cloud Hoodie",
+ category:"Fashion",
+ price:1999,
+ old:2799,
+ rating:4.7,
+ tag:"WINTER",
+ image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85",
+ description:"Soft premium hoodie made for comfort and everyday style."
+},
+
+{
+ id:10,
+ title:"Pulse Smartwatch",
+ category:"Electronics",
+ price:3799,
+ old:4999,
+ rating:4.6,
+ tag:"SMART",
+ image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85",
+ description:"Modern smartwatch with a premium minimalist design."
+},
+
+{
+ id:11,
+ title:"Apex Everyday Shoe",
+ category:"Shoes",
+ price:2699,
+ old:3699,
+ rating:4.8,
+ tag:"NEW",
+ image:"https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=900&q=85",
+ description:"Clean everyday footwear built for comfort and style."
+},
+
+{
+ id:12,
+ title:"Scent No. 07",
+ category:"Beauty",
+ price:1599,
+ old:2199,
+ rating:4.9,
+ tag:"TOP RATED",
+ image:"https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85",
+ description:"A sophisticated everyday fragrance in a premium bottle."
+},
+
+{
+ id:13,
+ title:"Essential Cotton Shirt",
+ category:"Fashion",
+ price:1299,
+ old:1899,
+ rating:4.7,
+ tag:"NEW",
+ image:"https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=900&q=85",
+ description:"Clean cotton shirt for smart casual outfits."
+},
+
+{
+ id:14,
+ title:"Urban Cargo Pants",
+ category:"Fashion",
+ price:1799,
+ old:2499,
+ rating:4.8,
+ tag:"TRENDING",
+ image:"https://images.unsplash.com/photo-1517438476312-10d79c077509?auto=format&fit=crop&w=900&q=85",
+ description:"Relaxed cargo pants with multiple utility pockets."
+},
+
+{
+ id:15,
+ title:"Classic Polo",
+ category:"Fashion",
+ price:999,
+ old:1499,
+ rating:4.6,
+ tag:"SALE",
+ image:"https://images.unsplash.com/photo-1625910513413-5fc45f2a3c26?auto=format&fit=crop&w=900&q=85",
+ description:"Minimal polo shirt for everyday premium styling."
+},
+
+{
+ id:16,
+ title:"Street Bomber",
+ category:"Fashion",
+ price:2899,
+ old:3999,
+ rating:4.9,
+ tag:"LIMITED",
+ image:"https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=900&q=85",
+ description:"Premium bomber jacket inspired by modern street fashion."
+}
+
+];
+
+let cart = JSON.parse(localStorage.getItem("souvik_cart")) || [];
+let wishlist = JSON.parse(localStorage.getItem("souvik_wishlist")) || [];
+let orders = JSON.parse(localStorage.getItem("souvik_orders")) || [];
+let couponApplied = false;
+let currentQuickProduct = null;
+
+
+/* ============================================================
+   BASIC HELPERS
+   ============================================================ */
+
+function money(value){
+    return "₹" + Number(value).toLocaleString("en-IN");
+}
+
+function save(){
+    localStorage.setItem("souvik_cart",JSON.stringify(cart));
+    localStorage.setItem("souvik_wishlist",JSON.stringify(wishlist));
+    localStorage.setItem("souvik_orders",JSON.stringify(orders));
+}
+
+function toast(message){
+    const el=document.getElementById("toast");
+
+    el.textContent=message;
+    el.classList.add("show");
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer=setTimeout(()=>{
+        el.classList.remove("show");
+    },2500);
+}
+
+function closeModal(id){
+    document.getElementById(id).classList.remove("active");
+}
+
+function openModal(id){
+    document.getElementById(id).classList.add("active");
+}
+
+
+/* ============================================================
+   PRODUCT RENDERING
+   ============================================================ */
+
+function renderProducts(){
+
+    const grid=document.getElementById("productGrid");
+
+    const search=document.getElementById("searchInput").value.toLowerCase().trim();
+
+    const category=document.getElementById("categoryFilter").value;
+
+    const sort=document.getElementById("sortFilter").value;
+
+    let list=products.filter(product=>{
+
+        const searchMatch=
+            product.title.toLowerCase().includes(search) ||
+            product.category.toLowerCase().includes(search) ||
+            product.description.toLowerCase().includes(search);
+
+        const categoryMatch=
+            category==="All" ||
+            product.category===category;
+
+        return searchMatch && categoryMatch;
+    });
+
+    if(sort==="low"){
+        list.sort((a,b)=>a.price-b.price);
+    }
+
+    if(sort==="high"){
+        list.sort((a,b)=>b.price-a.price);
+    }
+
+    if(sort==="rating"){
+        list.sort((a,b)=>b.rating-a.rating);
+    }
+
+    if(sort==="discount"){
+        list.sort((a,b)=>{
+            const da=(a.old-a.price)/a.old;
+            const db=(b.old-b.price)/b.old;
+            return db-da;
+        });
+    }
+
+    document.getElementById("resultCount").textContent=
+        list.length+" products";
+
+    if(!list.length){
+
+        grid.innerHTML=`
+            <div class="empty" style="grid-column:1/-1">
+                <h3>No products found</h3>
+                <p>Try another search or category.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+    grid.innerHTML=list.map(productCard).join("");
+}
+
+
+function productCard(product){
+
+    const isWish=wishlist.includes(product.id);
+
+    const discount=Math.round(
+        ((product.old-product.price)/product.old)*100
+    );
+
+    return `
+    <article class="product">
+
+        <div class="product-image">
+
+            <img
+                src="${product.image}"
+                alt="${product.title}"
+                loading="lazy"
+            >
+
+            <span class="product-tag">${product.tag}</span>
+
+            <button
+                class="heart"
+                onclick="toggleWishlist(${product.id})"
+            >
+                ${isWish?"♥":"♡"}
+            </button>
+
+        </div>
+
+        <div class="product-info">
+
+            <small>${product.category}</small>
+
+            <h3>${product.title}</h3>
+
+            <div class="rating">
+                ★★★★★ ${product.rating}
+            </div>
+
+            <div class="price">
+                <strong>${money(product.price)}</strong>
+                <span class="old">${money(product.old)}</span>
+                <span style="color:#55d98a;font-size:10px">
+                    ${discount}% OFF
+                </span>
+            </div>
+
+            <div class="product-actions">
+
+                <button onclick="openQuickView(${product.id})">
+                    Quick View
+                </button>
+
+                <button onclick="addToCart(${product.id})">
+                    Add To Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    </article>
+    `;
+}
+
+
+/* ============================================================
+   SEARCH / CATEGORY
+   ============================================================ */
+
+function scrollToShop(){
+
+    document.getElementById("shop")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+}
+
+function filterCategory(category){
+
+    document.getElementById("categoryFilter").value=category;
+
+    renderProducts();
+
+    scrollToShop();
+
+    toast(category+" collection opened");
+}
+
+
+/* ============================================================
+   CART
+   ============================================================ */
+
+function addToCart(id,quantity=1){
+
+    const existing=cart.find(item=>item.id===id);
+
+    if(existing){
+        existing.quantity+=quantity;
+    }else{
+        cart.push({
+            id:id,
+            quantity:quantity
+        });
+    }
+
+    save();
+    updateBadges();
+
+    toast("Added to cart");
+
+    renderCart();
+}
+
+
+function removeFromCart(id){
+
+    cart=cart.filter(item=>item.id!==id);
+
+    save();
+
+    updateBadges();
+    renderCart();
+
+    toast("Item removed");
+}
+
+
+function changeQty(id,amount){
+
+    const item=cart.find(item=>item.id===id);
+
+    if(!item)return;
+
+    item.quantity+=amount;
+
+    if(item.quantity<=0){
+        removeFromCart(id);
+        return;
+    }
+
+    save();
+    updateBadges();
+    renderCart();
+}
+
+
+function getCartTotal(){
+
+    return cart.reduce((total,item)=>{
+
+        const product=products.find(p=>p.id===item.id);
+
+        return total+(product.price*item.quantity);
+
+    },0);
+}
+
+
+function renderCart(){
+
+    const list=document.getElementById("cartList");
+
+    if(!cart.length){
+
+        list.innerHTML=`
+            <div class="empty">
+                <div style="font-size:45px">🛒</div>
+                <h3>Your cart is empty</h3>
+                <p>Add something you love.</p>
+            </div>
+        `;
+
+        document.getElementById("cartTotal").textContent="₹0";
+
+        return;
+    }
+
+    list.innerHTML=cart.map(item=>{
+
+        const product=products.find(p=>p.id===item.id);
+
+        return `
+        <div class="cart-item">
+
+            <img src="${product.image}" alt="">
+
+            <div>
+                <h4>${product.title}</h4>
+
+                <small>${money(product.price)}</small>
+
+                <div class="qty">
+
+                    <button onclick="changeQty(${product.id},-1)">
+                        −
+                    </button>
+
+                    <span>${item.quantity}</span>
+
+                    <button onclick="changeQty(${product.id},1)">
+                        +
+                    </button>
+
+                </div>
+            </div>
+
+            <button
+                style="background:none;border:0;color:#777"
+                onclick="removeFromCart(${product.id})"
+            >
+                Remove
+            </button>
+
+        </div>
+        `;
+
+    }).join("");
+
+    let total=getCartTotal();
+
+    if(couponApplied){
+        total=Math.round(total*.90);
+    }
+
+    document.getElementById("cartTotal").textContent=money(total);
+
+    document.getElementById("couponArea").innerHTML=`
+        <div style="display:flex;gap:8px;margin-top:20px">
+
+            <input
+                id="couponInput"
+                placeholder="Coupon code"
+                style="flex:1;background:#181818;border:1px solid #333;color:#fff;padding:12px;border-radius:7px"
+            >
+
+            <button
+                class="btn btn-dark"
+                onclick="applyCoupon()"
+            >
+                Apply
+            </button>
+
+        </div>
+    `;
+}
+
+
+function applyCoupon(){
+
+    const value=document
+        .getElementById("couponInput")
+        .value
+        .trim()
+        .toUpperCase();
+
+    if(value==="SOUVIK10"){
+
+        couponApplied=true;
+
+        toast("10% discount applied");
+
+        renderCart();
+
+    }else{
+
+        toast("Invalid coupon code");
+
+    }
+}
+
+
+function openCart(){
+
+    renderCart();
+
+    openModal("cartOverlay");
+}
+
+
+/* ============================================================
+   WISHLIST
+   ============================================================ */
+
+function toggleWishlist(id){
+
+    if(wishlist.includes(id)){
+
+        wishlist=wishlist.filter(x=>x!==id);
+
+        toast("Removed from wishlist");
+
+    }else{
+
+        wishlist.push(id);
+
+        toast("Added to wishlist");
+
+    }
+
+    save();
+
+    updateBadges();
+    renderProducts();
+}
+
+
+function openWishlist(){
+
+    const grid=document.getElementById("wishlistGrid");
+
+    const list=products.filter(p=>wishlist.includes(p.id));
+
+    if(!list.length){
+
+        grid.innerHTML=`
+            <div class="empty" style="grid-column:1/-1">
+                <div style="font-size:50px">♡</div>
+                <h3>Your wishlist is empty</h3>
+                <p>Tap the heart on products you love.</p>
+            </div>
+        `;
+
+    }else{
+
+        grid.innerHTML=list.map(productCard).join("");
+
+    }
+
+    openModal("wishlistOverlay");
+}
+
+
+/* ============================================================
+   QUICK VIEW
+   ============================================================ */
+
+function openQuickView(id){
+
+    const product=products.find(p=>p.id===id);
+
+    if(!product)return;
+
+    currentQuickProduct=product;
+
+    document.getElementById("quickImg").src=product.image;
+
+    document.getElementById("quickCategory").textContent=
+        product.category;
+
+    document.getElementById("quickTitle").textContent=
+        product.title;
+
+    document.getElementById("quickRating").textContent=
+        "★★★★★ "+product.rating;
+
+    document.getElementById("quickPrice").textContent=
+        money(product.price);
+
+    document.getElementById("quickOld").textContent=
+        money(product.old);
+
+    document.getElementById("quickDescription").textContent=
+        product.description;
+
+    document.getElementById("quickAdd").onclick=()=>{
+        addToCart(product.id);
+        closeModal("quickOverlay");
+    };
+
+    document.getElementById("quickBuy").onclick=()=>{
+        addToCart(product.id);
+        closeModal("quickOverlay");
+        openCheckout();
+    };
+
+    openModal("quickOverlay");
+}
+
+
+function selectOption(button){
+
+    const parent=button.parentElement;
+
+    parent.querySelectorAll(".option")
+        .forEach(x=>x.classList.remove("selected"));
+
+    button.classList.add("selected");
+}
+
+
+/* ============================================================
+   CHECKOUT
+   ============================================================ */
+
+function openCheckout(){
+
+    if(!cart.length){
+
+        toast("Your cart is empty");
+
+        return;
+    }
+
+    closeModal("cartOverlay");
+
+    renderCheckout();
+
+    openModal("checkoutOverlay");
+}
+
+
+function renderCheckout(){
+
+    const summary=document.getElementById("checkoutSummary");
+
+    let total=getCartTotal();
+
+    if(couponApplied){
+        total=Math.round(total*.90);
+    }
+
+    summary.innerHTML=cart.map(item=>{
+
+        const product=products.find(p=>p.id===item.id);
+
+        return `
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            padding:10px 0;
+            border-bottom:1px solid #292929;
+            font-size:13px
+        ">
+            <span>
+                ${product.title} × ${item.quantity}
+            </span>
+
+            <strong>
+                ${money(product.price*item.quantity)}
+            </strong>
+        </div>
+        `;
+
+    }).join("");
+
+    document.getElementById("checkoutTotal").textContent=
+        money(total);
+}
+
+
+function placeOrder(){
+
+    if(!cart.length){
+
+        toast("Your cart is empty");
+
+        return;
+    }
+
+    const name=document.getElementById("customerName").value.trim();
+
+    const phone=document.getElementById("customerPhone").value.trim();
+
+    const email=document.getElementById("customerEmail").value.trim();
+
+    const address=document.getElementById("customerAddress").value.trim();
+
+    const pin=document.getElementById("customerPin").value.trim();
+
+    if(!name||!phone||!address||!pin){
+
+        toast("Please complete your delivery details");
+
+        return;
+    }
+
+    const payment=document.querySelector(
+        'input[name="payment"]:checked'
+    ).value;
+
+    let total=getCartTotal();
+
+    if(couponApplied){
+        total=Math.round(total*.90);
+    }
+
+    const orderId=
+        "SOU2026"+
+        Math.random()
+            .toString(36)
+            .substring(2,7)
+            .toUpperCase();
+
+    const order={
+
+        id:orderId,
+
+        date:new Date().toLocaleDateString("en-IN"),
+
+        customer:name,
+
+        phone:phone,
+
+        email:email,
+
+        address:address,
+
+        pin:pin,
+
+        payment:payment,
+
+        total:total,
+
+        status:"Order Confirmed",
+
+        items:[...cart]
+
+    };
+
+    orders.unshift(order);
+
+    cart=[];
+
+    couponApplied=false;
+
+    save();
+
+    updateBadges();
+
+    closeModal("checkoutOverlay");
+
+    document.getElementById("successOrderId")
+        .textContent=orderId;
+
+    openModal("successOverlay");
+
+    renderCart();
+}
+
+
+/* ============================================================
+   ORDER HISTORY
+   ============================================================ */
+
+function openOrders(){
+
+    const list=document.getElementById("ordersList");
+
+    if(!orders.length){
+
+        list.innerHTML=`
+            <div class="empty">
+                <div style="font-size:45px">📦</div>
+                <h3>No orders yet</h3>
+                <p>Your completed orders will appear here.</p>
+            </div>
+        `;
+
+    }else{
+
+        list.innerHTML=orders.map(order=>{
+
+            const itemCount=order.items.reduce(
+                (sum,item)=>sum+item.quantity,
+                0
+            );
+
+            return `
+            <div class="order-card">
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    gap:10px
+                ">
+
+                    <div>
+                        <small style="color:#777">
+                            ORDER ID
+                        </small>
+
+                        <h3>${order.id}</h3>
+                    </div>
+
+                    <strong>${money(order.total)}</strong>
+
+                </div>
+
+                <p style="color:#777;font-size:12px">
+                    ${order.date} • ${itemCount} item(s) • ${order.payment}
+                </p>
+
+                <span class="order-status">
+                    ${order.status}
+                </span>
+
+                <button
+                    class="btn btn-dark"
+                    style="margin-top:15px"
+                    onclick="trackSpecificOrder('${order.id}')"
+                >
+                    Track Order
+                </button>
+
+            </div>
+            `;
+
+        }).join("");
+
+    }
+
+    openModal("ordersOverlay");
+}
+
+
+/* ============================================================
+   ORDER TRACKING
+   ============================================================ */
+
+function openTracking(){
+
+    closeModal("ordersOverlay");
+
+    openModal("trackingOverlay");
+
+    document.getElementById("trackingResult").innerHTML="";
+}
+
+
+function trackSpecificOrder(id){
+
+    closeModal("ordersOverlay");
+
+    openTracking();
+
+    document.getElementById("trackingInput").value=id;
+
+    trackOrder();
+}
+
+
+function trackOrder(){
+
+    const id=document
+        .getElementById("trackingInput")
+        .value
+        .trim()
+        .toUpperCase();
+
+    const result=document.getElementById("trackingResult");
+
+    if(!id){
+
+        toast("Enter an order ID");
+
+        return;
+    }
+
+    const order=orders.find(x=>x.id===id);
+
+    if(!order){
+
+        result.innerHTML=`
+            <div class="empty" style="margin-top:25px">
+                <div style="font-size:40px">🔎</div>
+                <h3>Order not found</h3>
+                <p>Please check your order ID and try again.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+    result.innerHTML=`
+
+        <div class="order-card" style="margin-top:25px">
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                gap:15px;
+                flex-wrap:wrap
+            ">
+
+                <div>
+                    <small style="color:#777">
+                        ORDER ID
+                    </small>
+
+                    <h3>${order.id}</h3>
+                </div>
+
+                <div>
+                    <small style="color:#777">
+                        TOTAL
+                    </small>
+
+                    <h3>${money(order.total)}</h3>
+                </div>
+
+            </div>
+
+            <div class="timeline">
+
+                <div class="timeline-item done">
+                    <h4>Order Confirmed</h4>
+                    <p>Your order has been received successfully.</p>
+                </div>
+
+                <div class="timeline-item done">
+                    <h4>Processing</h4>
+                    <p>Your items are being prepared.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Shipped</h4>
+                    <p>Your package will be handed to the delivery partner.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Out For Delivery</h4>
+                    <p>Your package will arrive at your delivery address.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Delivered</h4>
+                    <p>Your order will be marked delivered after successful delivery.</p>
+                </div>
+
+            </div>
+
+        </div>
+    `;
+}
+
+
+/* ============================================================
+   DEALS
+   ============================================================ */
+
+function showDeals(){
+
+    document.getElementById("searchInput").value="";
+
+    document.getElementById("categoryFilter").value="All";
+
+    document.getElementById("sortFilter").value="discount";
+
+    renderProducts();
+
+    scrollToShop();
+
+    toast("Showing the biggest deals");
+}
+
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+
+function updateBadges(){
+
+    const cartCount=cart.reduce(
+        (sum,item)=>sum+item.quantity,
+        0
+    );
+
+    document.getElementById("cartBadge")
+        .textContent=cartCount;
+
+    document.getElementById("wishBadge")
+        .textContent=wishlist.length;
+}
+
+
+/* ============================================================
+   KEYBOARD / OUTSIDE CLICK
+   ============================================================ */
+
+document.querySelectorAll(".overlay")
+.forEach(overlay=>{
+
+    overlay.addEventListener("click",function(event){
+
+        if(event.target===overlay){
+            overlay.classList.remove("active");
+        }
+
+    });
+
+});
+
+
+document.addEventListener("keydown",function(event){
+
+    if(event.key==="Escape"){
+
+        document.querySelectorAll(".overlay")
+        .forEach(x=>x.classList.remove("active"));
+
+    }
+
+});
+
+
+/* ============================================================
+   INITIALIZATION
+   ============================================================ */
+
+renderProducts();
+
+updateBadges();
+
+</script>
+
+</body>
+</html>
